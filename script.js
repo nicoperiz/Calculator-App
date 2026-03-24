@@ -14,6 +14,12 @@ function handleInput(value) {
     return;
   }
 
+  if (value === 'Backspace') {
+    currentValue = currentValue.slice(0, -1);
+    display.textContent = currentValue || '0';
+    return;
+}
+
   if (value === '=' && currentValue === '') {
     return;
   }
@@ -59,7 +65,10 @@ document.addEventListener('keydown', event => {
   if (key === '+') handleInput('+');
   if (key === '-') handleInput('-');
   if (key === '*') handleInput('×');
-  if (key === '/') handleInput('÷');
+  if (key === '/') {
+    event.preventDefault();
+    handleInput('÷');
+}
   if (key === 'Enter') handleInput('=');
-  if (key === 'Backspace') handleInput('C');
+  if (key === 'Backspace') handleInput('Backspace');
 });
